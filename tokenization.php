@@ -10,7 +10,6 @@ function codestruct($argv)
         [ '\{',       'LEFT_BRACE' ],
         [ '\}',       'RIGHT_BRACE' ],
         [ '\d+',      'INTEGER' ],
-        [ '\w+',      'STRING' ],
         [ '\;',       'SEMICOLON' ],
         [ '\"',       'DOUBLE_QUOTE' ],
         [ 'else',     'ELSE' ],
@@ -24,6 +23,7 @@ function codestruct($argv)
         [ '-',        'SOUS'],
         [ '*',        'MULTIPLE'],
         [ '\/',       'DIV'],
+        [ '[\w\s\d]+',    'STRING' ],
     ];
 
     $open = fopen($argv[1], "r");
