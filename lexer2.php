@@ -1,12 +1,7 @@
 <?php
 
 require "tokenization.php";
-/**
- * Created by PhpStorm.
- * User: killianb
- * Date: 3/31/17
- * Time: 11:22 AM
- */
+
 class lexer2
 {
     public $parser;

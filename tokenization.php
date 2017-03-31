@@ -3,34 +3,37 @@
 function codestruct($argv)
 {
     $rules = [
-        [ 'function', 'FUNCTION' ],
-        [ 'if',       'IF' ],
-        [ '\(',       'LEFT_PAREN' ],
-        [ '\)',       'RIGHT_PAREN' ],
-        [ '\{',       'LEFT_BRACE' ],
-        [ '\}',       'RIGHT_BRACE' ],
-        [ '\d+',      'INTEGER' ],
-        [ '\;',       'SEMICOLON' ],
-        [ '\"',       'DOUBLE_QUOTE' ],
-        [ 'else',     'ELSE' ],
-        [ 'print',    'PRINT' ],
-        [ '==',       'DOUBLE_EQUAL' ],
-        [ '<',        'LT'],
-        [ '>',        'GT'],
-        [ '>=',       'GT_EQUAL'],
-        [ '<=',       'LT_EQUAL'],
-        [ '+',        'ADD'],
-        [ '-',        'SOUS'],
-        [ '*',        'MULTIPLE'],
-        [ '\/',       'DIV'],
-        [ '[\w\s\d]+',    'STRING' ],
+        [ 'function',   'FUNCTION' ],
+        [ 'if',         'IF' ],
+        [ '\(',         'LEFT_PAREN' ],
+        [ '\)',         'RIGHT_PAREN' ],
+        [ '\{',         'LEFT_BRACE' ],
+        [ '\}',         'RIGHT_BRACE' ],
+        [ '\d+',        'INTEGER' ],
+        [ '\;',         'SEMICOLON' ],
+        [ '\"',         'DOUBLE_QUOTE' ],
+        [ 'else',       'ELSE' ],
+        [ 'print',      'PRINT' ],
+        [ '>=|<=|==|[<>=]',   'OPERAND' ],
+        [ '\n',     'CHARRIOT_RETURN'],
+//        [ '==',         'DOUBLE_EQUAL' ],
+//        [ '<',          'LT'],
+//        [ '>',          'GT'],
+//        [ '>=',         'GT_EQUAL'],
+//        [ '<=',         'LT_EQUAL'],
+//        [ '\+',          'ADD'],
+//        [ '\-',          'SOUS'],
+//        [ '\*',          'MULTIPLE'],
+//        [ '\/',         'DIV'],
+        [ '\w+',  'STRING' ],
     ];
 
     $open = fopen($argv[1], "r");
     $code = fread($open, filesize($argv[1]));
     $result = [];
+    $code = rtrim($code);
 
-    while ($code) {
+while ($code) {
         $code = ltrim($code);
         $valid = false;
         foreach ($rules as $rule) {
