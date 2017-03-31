@@ -3,17 +3,27 @@
 function codestruct($argv)
 {
     $rules = [
-        [ 'if',     'IF' ],
-        [ '\(',     'LEFT_PAREN' ],
-        [ '\)',     'RIGHT_PAREN' ],
-        [ '\{',     'LEFT_BRACE' ],
-        [ '\}',     'RIGHT_BRACE' ],
-        [ '\d+',    'INTEGER' ],
-        [ '\w+',    'STRING' ],
-        [ '\;',     'SEMICOLON' ],
-        [ '\"',     'DOUBLE_QUOTE' ],
-        [ 'else',   'ELSE' ],
-        [ 'print',  'PRINT' ],
+        [ 'function', 'FUNCTION' ],
+        [ 'if',       'IF' ],
+        [ '\(',       'LEFT_PAREN' ],
+        [ '\)',       'RIGHT_PAREN' ],
+        [ '\{',       'LEFT_BRACE' ],
+        [ '\}',       'RIGHT_BRACE' ],
+        [ '\d+',      'INTEGER' ],
+        [ '\w+',      'STRING' ],
+        [ '\;',       'SEMICOLON' ],
+        [ '\"',       'DOUBLE_QUOTE' ],
+        [ 'else',     'ELSE' ],
+        [ 'print',    'PRINT' ],
+        [ '==',       'DOUBLE_EQUAL' ],
+        [ '<',        'LT'],
+        [ '>',        'GT'],
+        [ '>=',       'GT_EQUAL'],
+        [ '<=',       'LT_EQUAL'],
+        [ '+',        'ADD'],
+        [ '-',        'SOUS'],
+        [ '*',        'MULTIPLE'],
+        [ '\/',       'DIV'],
     ];
 
     $open = fopen($argv[1], "r");
