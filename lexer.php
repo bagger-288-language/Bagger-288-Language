@@ -2,11 +2,13 @@
 
 require ("parseif.php");
 
-$parseif = new parseif($argv);
+if ($argc > 1) {
+    $parseif = new parseif($argv);
 
-$result = $parseif->lexer->parser;
+    $result = $parseif->lexer->parser;
 //$result = $parseif->parse_if();
 //if (!$result) {
 //    exit('Parse error \n');
 //}
-var_dump($result);
+    var_dump($result);
+}

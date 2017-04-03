@@ -1,64 +1,90 @@
 <?php
-$tree = array [
+$tree = array (
     'type' => 'if',
     'condition' =>
-    array [ 
+    array (
         'type' => 'INTEGER',
-        'value' => '1',
-    ],
+        'value' => 1,
+    ),
     'then' =>
-    array [ 
+    array (
         'type' => 'block',
         'statements' =>
-        array [
-            array [ 
-                'type' => 'print',
-                'value' => 
-                array [ 
-                    'type' => 'STING',
-                    'value' => 'Hello',
-                ],
-            ],
-            array [ 
+        array (
+            array (
                 'type' => 'print',
                 'value' =>
-                array [ 
-                    'type' => 'STING',
+                array (
+                    'type' => 'STRING',
+                    'value' => 'Hello',
+                ),
+            ),
+            array (
+                'type' => 'print',
+                'value' =>
+                array (
+                    'type' => 'STRING',
                     'value' => 'world',
-                ],
-            ],
-        ],
-    ],
-];
+                ),
+            ),
+        ),
+    ),
+);
 
-function run($tree) { 
-    switch ($tree['type']) { 
-    case 'if':
-        $condition = run($tree['condition']);
-        if ($condition != 0) {
-            run($tree['then']);
-        }
-        break;
 
-    case 'block';
-        $value = 0;
-        foreach ($tree['statements'] as $statements) {
-            $value = run($statement);
-        }
-    case 'print':
-        $value = run($tree['value']);
-        echo $value;
-        return $value;
-
-    case 'INTEGER':
-        return ($tree['value']);
-
-    case 'STRING':
-        return $tree['value'];
-
-    default:
-        exit('Unable to handle node type' . $tree['type']);
+function	interif($tree){
+    $condition = run($tree['condition']);
+    if ($condition != 0) {
+	run($tree['then']);
     }
+    return $condition;
+}
+
+function	interblock($tree) {
+    $value = 0;
+    foreach($tree['statements'] as $statements) {
+	$value = run($statements);
+    }
+    return $value;
+}
+
+function	interprint($tree) {
+    $value = run($tree['value']);
+    echo $value;
+    return $value;
+}
+
+function	interint($tree) {
+    return ($tree['value']);
+}
+
+function	interstr($tree) {
+    return ($tree['value']);
+}
+
+
+function run($tree) {
+  $i = 0;
+  $j = 0;
+
+  $tableaufunc = [
+      [ 'node' => 'if',    'functions' => 'interif' ],
+      [ 'node' => 'block', 'functions' => 'interblock' ],
+      [ 'node' => 'print', 'functions' => 'interprint' ],
+      [ 'node' => 'INTEGER', 'functions' => 'interint' ],
+      [ 'node' => 'STRING', 'functions' => 'interstr' ]
+  ];
+
+  while ( $i < 5 ) {
+    if ($tree['type'] == $tableaufunc[$i]['node']) {
+	$value = $tableaufunc[$i]['functions']($tree);
+	$j = 1;
+	return $value;
+    }
+    $i++;
+  }
+  if ($j == 0)
+    exit('Unable to find node ' . $tree['type']);
 }
 
 run($tree);
