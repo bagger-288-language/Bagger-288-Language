@@ -24,7 +24,9 @@ class parseif
 
     public function parseStatement()
     {
+        var_dump("Je suis la");
         if ($this->lexer->peek()['type'] == 'PRINT') {
+            var_dump("few");
             $this->lexer->shift();
             $this->lexer->expect('DOUBLE_QUOTE');
             $temp = $this->lexer->peek()["type"];
@@ -48,12 +50,21 @@ class parseif
         return array('type' => 'block', 'statement' => $statements);
     }
 
+    public function parse_else() {
+        if ($this->lexer->peek()['type'] == "ELSE") {
+            $this->lexer->shift();
+            $block = $this->parseBlock();
+            return array('type' => 'else', 'block' => $block);
+        }
+    }
+
     public function parse_if() {
         if ($this->lexer->peek()['type'] == "IF") {
             $this->lexer->shift();
             $value = $this->parseCondition();
             $block = $this->parseBlock();
-            return array('type' => 'if', 'condition' => $value, 'block' => $block);
+            $else = $this->parse_else();
+            return array('type' => 'if', 'condition' => $value, 'then' => $block, 'else' => $else);
         }
     }
 }

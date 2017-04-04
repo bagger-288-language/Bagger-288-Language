@@ -21,7 +21,7 @@ function codestruct($argv)
 //        [ '>',          'GT'],
 //        [ '>=',         'GT_EQUAL'],
 //        [ '<=',         'LT_EQUAL'],
-//        [ '\+',          'ADD'],
+        [ '\+',          'ADD'],
 //        [ '\-',          'SOUS'],
 //        [ '\*',          'MULTIPLE'],
 //        [ '\/',         'DIV'],
