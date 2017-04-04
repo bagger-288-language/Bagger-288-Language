@@ -24,11 +24,11 @@ class parseif
 
     public function parseStatement()
     {
-        var_dump("Je suis la");
+        var_dump($this->lexer->parser[0]['type']);
         if ($this->lexer->peek()['type'] == 'PRINT') {
-            var_dump("few");
             $this->lexer->shift();
             $this->lexer->expect('DOUBLE_QUOTE');
+            var_dump($this->lexer->parser);
             $temp = $this->lexer->peek()["type"];
             if ($temp == 'STRING')
                 $value = $this->lexer->expect('STRING');
@@ -37,6 +37,11 @@ class parseif
             $this->lexer->expect('DOUBLE_QUOTE');
             $this->lexer->expect('SEMICOLON');
             return array('type' => 'print', 'value' => $value);
+        }
+        else if ($this->lexer->peek()['type'] == "INTEGER") {
+            $this->lexer->shift();
+            $this->lexer->expect('SEMICOLON');
+            return array('type' => 'integer');
         }
     }
 

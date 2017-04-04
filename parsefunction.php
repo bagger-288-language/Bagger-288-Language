@@ -26,7 +26,26 @@ class parsefunction
         return array('type' => 'argument', 'argument' => $argument);
     }
 
-    public function parseBlock() {
+    public function parseStatement()
+    {
+        var_dump("Je suis la");
+        if ($this->lexer->peek()['type'] == 'PRINT') {
+            var_dump("few");
+            $this->lexer->shift();
+            $this->lexer->expect('DOUBLE_QUOTE');
+            $temp = $this->lexer->peek()["type"];
+            if ($temp == 'STRING')
+                $value = $this->lexer->expect('STRING');
+            else if ($temp == 'INTEGER')
+                $value = $this->lexer->expect('INTEGER');
+            $this->lexer->expect('DOUBLE_QUOTE');
+            $this->lexer->expect('SEMICOLON');
+            return array('type' => 'print', 'value' => $value);
+        }
+    }
+
+    public function parseBlock()
+    {
         $this->lexer->expect('LEFT_BRACE');
         $statements = [];
         while ($statement = $this->parseStatement()) {
@@ -34,4 +53,5 @@ class parsefunction
         }
         $this->lexer->expect('RIGHT_BRACE');
         return array('type' => 'block', 'statement' => $statements);
+    }
 }
