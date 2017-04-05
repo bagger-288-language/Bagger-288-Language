@@ -1,5 +1,4 @@
 <?php
-require "lexer2.php";
 
 class parsefunction
     {
@@ -12,7 +11,12 @@ class parsefunction
 
     public function parseName()
     {
-
+        $this->lexer->expect("FUNCTION");
+        $name = [];
+        while (($temp = $this->lexer->peek()["type"]) != 'LEFT_PAREN') {
+            $argument[] = $this->lexer->expect($temp);
+        }
+        return array('type' => 'name', 'name' => $name);
     }
 
     public function parseArgument()
@@ -53,5 +57,15 @@ class parsefunction
         }
         $this->lexer->expect('RIGHT_BRACE');
         return array('type' => 'block', 'statement' => $statements);
+    }
+
+    public function parse_function() {
+        if ($this->lexer->peek()['type'] == "FUNCTION") {
+            $this->lexer->shift();
+            $name = $this->parseName();
+            $arg = $this->parseArgument();
+            $stat = $this->parseStatement();
+            return array('type' => 'function', 'name' => $name, 'argument' => $arg, 'statement' => $stat);
+        }
     }
 }
