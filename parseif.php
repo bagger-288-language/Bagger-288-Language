@@ -43,9 +43,12 @@ class parseif
             $this->lexer->expect('SEMICOLON');
             return array('type' => 'integer');
         }
+        else if ($this->lexer->peek()['type'] == "EQ") {
+            $this->lexer->shift();
+            return array('type' => 'equal');
+        }
         else if ($this->lexer->peek()['type'] == "STRING") {
             $this->lexer->shift();
-            $this->lexer->expect('SEMICOLON');
             return array('type' => 'string');
         }
     }
@@ -54,6 +57,7 @@ class parseif
         $this->lexer->expect('LEFT_BRACE');
         $statements = [];
         while ($statement = $this->parseStatement()) {
+            var_dump("vedsgsg");
             $statements[] = $statement;
         }
         $this->lexer->expect('RIGHT_BRACE');
