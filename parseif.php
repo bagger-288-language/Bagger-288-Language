@@ -43,6 +43,11 @@ class parseif
             $this->lexer->expect('SEMICOLON');
             return array('type' => 'integer');
         }
+        else if ($this->lexer->peek()['type'] == "STRING") {
+            $this->lexer->shift();
+            $this->lexer->expect('SEMICOLON');
+            return array('type' => 'string');
+        }
     }
 
     public function parseBlock() {
