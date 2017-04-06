@@ -1,35 +1,18 @@
 <?php
-$tree = array (
-    'type' => 'if',
-    'condition' =>
-    array (
-        'type' => 'INTEGER',
-        'value' => 1,
-    ),
-    'then' =>
-    array (
-        'type' => 'block',
-        'statements' =>
-        array (
-            array (
-                'type' => 'print',
-                'value' =>
-                array (
-                    'type' => 'STRING',
-                    'value' => 'Hello',
-                ),
-            ),
-            array (
-                'type' => 'print',
-                'value' =>
-                array (
-                    'type' => 'STRING',
-                    'value' => 'world',
-                ),
-            ),
-        ),
-    ),
-);
+require ("parseif.php");
+//require ("parsefunction.php");
+
+if ($argc > 1) {
+    $parseif = new parseif($argv);
+//    $parsefunction = new parsefunction($argv);
+    //$result = $parseif->lexer->parser;
+//    $result1 = $parsefunction->parse_function();
+    $tree = $parseif->parse_if();
+    if (!$tree) {
+        exit('Parse error \n');
+    }
+//    var_dump($result);
+}
 
 
 function	interif($tree){
