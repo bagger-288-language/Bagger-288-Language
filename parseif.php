@@ -51,6 +51,10 @@ class parseif
             $this->lexer->shift();
             return array('type' => 'string');
         }
+        else if ($this->lexer->peek()['type'] == "VARIABLE") {
+            $this->lexer->shift();
+            return array('type' => 'variable');
+        }
     }
 
     public function parseBlock() {
