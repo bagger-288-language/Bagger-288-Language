@@ -1,8 +1,9 @@
-if (2 < 1)
+if (2 > 1)
 {
-    print "gwegre";
+    $a = 23;
+    print $a;
 }
 else
 {
-    print "wesh frere";
+    print "CEST LA";
 }

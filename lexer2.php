@@ -13,7 +13,9 @@ class lexer2
 
     public function peek()
     {
+        if ($this->parser)
         return $this->parser[0];
+        else return NULL;
     }
 
     public function shift()

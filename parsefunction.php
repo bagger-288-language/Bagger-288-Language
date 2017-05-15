@@ -1,12 +1,15 @@
 <?php
 
-class parsefunction
-    {
-    public $lexer;
 
-    public function __construct($argv)
+class parsefunction
+{
+    public $lexer;
+    private $parse;
+
+    public function __construct($lexer)
     {
-        $this->lexer = new lexer2($argv);
+        $this->parse = new statements($lexer);
+        $this->lexer = $lexer;
     }
 
     public function parseName()
@@ -32,19 +35,12 @@ class parsefunction
 
     public function parseStatement()
     {
-        var_dump("Je suis la");
-        if ($this->lexer->peek()['type'] == 'PRINT') {
-            var_dump("few");
-            $this->lexer->shift();
-            $this->lexer->expect('DOUBLE_QUOTE');
-            $temp = $this->lexer->peek()["type"];
-            if ($temp == 'STRING')
-                $value = $this->lexer->expect('STRING');
-            else if ($temp == 'INTEGER')
-                $value = $this->lexer->expect('INTEGER');
-            $this->lexer->expect('DOUBLE_QUOTE');
-            $this->lexer->expect('SEMICOLON');
-            return array('type' => 'print', 'value' => $value);
+        $i = 0;
+        while ($i < 6) {
+            if ($this->lexer->peek()['type'] == $this->parse->index[$i]) {
+                return call_user_func($this->parse->parseFunctions[$this->parse->index[$i]]);
+            }
+            $i++;
         }
     }
 
@@ -67,5 +63,6 @@ class parsefunction
             $stat = $this->parseStatement();
             return array('type' => 'function', 'name' => $name, 'argument' => $arg, 'statement' => $stat);
         }
+        else return NULL;
     }
 }

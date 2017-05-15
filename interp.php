@@ -1,16 +1,24 @@
 <?php
 require ("parseif.php");
-//require ("parsefunction.php");
+require ("operations.php");
+require ("parsefunction.php");
+require ("lexer2.php");
 
-if ($argc > 1) {
-    $parseif = new parseif($argv);
-//    $parsefunction = new parsefunction($argv);
+if ($argc == 2) {
+    $lexer = new lexer2($argv);
+    $parseif = new parseif($lexer);
+    $parsefunc = new parsefunction($lexer);
+    //    $parsefunction = new parsefunction($argv);
     //$result = $parseif->lexer->parser;
 //    $result1 = $parsefunction->parse_function();
-    $tree = $parseif->parse_if();
+    if ($tree = $parseif->parse_if());
+    elseif ($tree = $parsefunc->parse_function());
     if (!$tree) {
         exit('Parse error \n');
     }
+}
+else {
+    echo "Veuillez ajouter un nom de fichier";
 }
 
 function	interif($tree){
@@ -55,71 +63,23 @@ function    intercondition($tree) {
     return 0;
 }
 
-function    supp($inta, $intb) {
-    return $inta > $intb;
-}
-
-function    supeq($inta, $intb) {
-    return $inta >= $intb;
-}
-
-function    infeq($inta, $intb) {
-    return $inta <= $intb;
-}
-
-function    inf($inta, $intb) {
-    return $inta < $intb;
-}
-
-function    simpeq($inta, $intb) {
-    return $inta = $intb;
-}
-
-function    sum($inta, $intb) {
-    return $inta + $intb;
-}
-
-function    diff($inta, $intb) {
-    return $inta - $intb;
-}
-
-function    mult($inta, $intb) {
-    return $inta * $intb;
-}
-
-function    div($inta, $intb) {
-    return $inta / $intb;
-}
-
-function    dobeq($inta, $intb) {
-    return $inta == $intb;
-}
-
-
-function    testoperation($inta, $operand, $intb)
-{
-    $i = 0;
-    $tableope = [
-        [ 'oper' => '>', 'func' => 'supp' ],
-        [ 'oper' => '<', 'func' => 'inf' ],
-        [ 'oper' => '<=', 'func' => 'infeq' ],
-        [ 'oper' => '>=', 'func' => 'supeq' ],
-        [ 'oper' => '=', 'func' => 'simpeq' ],
-        [ 'oper' => '==', 'func' => 'dobeq' ],
-        [ 'oper' => '+',  'func' => 'sum' ],
-        [ 'oper' => '-', 'func' => 'diff' ],
-        [ 'oper' => '*', 'func' => 'mult' ],
-        [ 'oper' => '/', 'func' => 'div' ]
-    ];
-
-    while ($i < 10)
-    {
-       if ($operand == $tableope[$i]['oper']) {
-           $result = $tableope[$i]['func']($inta, $intb);
-           return $result;
-       }
-       $i++;
+function    intervar($tree) {
+    if (isset(variable::$vars[$tree['value']]))
+        return (variable::$vars[$tree['value']]);
+    else {
+        echo 'Undefined variable '.$tree['value'];
     }
+}
+
+function    interoper($tree) {
+    return ($tree['value']);
+}
+
+function    intereq($tree) {
+    return ($tree['value']);
+}
+
+function    intersemco($tree) {
     return 0;
 }
 
@@ -130,12 +90,17 @@ function run($tree) {
   $tableaufunc = [
       [ 'node' => 'if',    'functions' => 'interif' ],
       [ 'node' => 'block', 'functions' => 'interblock' ],
-      [ 'node' => 'print', 'functions' => 'interprint' ],
+      [ 'node' => 'PRINT', 'functions' => 'interprint' ],
       [ 'node' => 'INTEGER', 'functions' => 'interint' ],
       [ 'node' => 'STRING', 'functions' => 'interstr' ],
-      [ 'node' => 'condition', 'functions' => 'intercondition' ]
+      [ 'node' => 'condition', 'functions' => 'intercondition' ],
+      [ 'node' => 'VARIABLE', 'functions' => 'intervar' ],
+      [ 'node' => 'OPERAND', 'functions' => 'interoper' ],
+      [ 'node' => 'EQUAL', 'functions' => 'intereq' ],
+      [ 'node' => 'SEMICOLON', 'functions' => 'intersemco' ]
   ];
-  while ( $i < 6 ) {
+  var_dump($tree);
+  while ( $i < 10 ) {
     if ($tree['type'] == $tableaufunc[$i]['node']) {
 	$value = $tableaufunc[$i]['functions']($tree);
 	$j = 1;
@@ -143,10 +108,10 @@ function run($tree) {
     }
     $i++;
   }
-  if ($j == 0)
-    exit('Unable to find node ' . $tree['type']);
+  if ($j == 0) {
+      exit('Unable to find node ' . $tree['type'] . ' ' . $tree['value']);
+  }
 }
-
 
 run($tree);
 

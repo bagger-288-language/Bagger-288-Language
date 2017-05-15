@@ -3,26 +3,26 @@
 function codestruct($argv)
 {
     $rules = [
-        [ 'function',        'FUNCTION' ],
-        [ 'if',              'IF' ],
-        [ '\(',              'LEFT_PAREN' ],
-        [ '\)',              'RIGHT_PAREN' ],
-        [ '\{',              'LEFT_BRACE' ],
-        [ '\}',              'RIGHT_BRACE' ],
-        [ '\d+',             'INTEGER' ],
-        [ '\;',              'SEMICOLON' ],
-        [ '\"',              'DOUBLE_QUOTE' ],
-        [ 'else',            'ELSE' ],
-        [ 'b2 =',            'VARIABLE' ],
-        [ 'print',           'PRINT' ],
-        [ '>=|<=|==|[<>]',   'OPERAND' ],
-        [ '\n',              'CHARRIOT_RETURN'],
-        [ '[\w\s]+',             'STRING' ],
-        [ '\+',              'OPERAND'],
-        [ '\=',              'OPERAND'],
-        [ '\-',              'OPERAND'],
-        [ '\*',              'OPERAND'],
-        [ '\/',              'OPERAND'],
+        ['function',        'FUNCTION'],
+        ['if',              'IF'],
+        ['\(',              'LEFT_PAREN'],
+        ['\)',              'RIGHT_PAREN'],
+        ['\{',              'LEFT_BRACE'],
+        ['\}',              'RIGHT_BRACE'],
+        ['\d+',             'INTEGER'],
+        ['\;',              'SEMICOLON'],
+        ['\"',              'DOUBLE_QUOTE'],
+        ['\=',              'EQUAL'],
+        ['else',            'ELSE'],
+        ['\$[\w\d]+',       'VARIABLE'],
+        ['print',           'PRINT'],
+        ['>=|<=|==|[<>]',   'OPERAND'],
+        ['\n',              'CHARIOT_RETURN'],
+        ['[\w\s]+',     'STRING'],
+        ['\+',              'OPERAND'],
+        ['\-',              'OPERAND'],
+        ['\*',              'OPERAND'],
+        ['\/',              'OPERAND'],
 
     ];
 
@@ -31,13 +31,12 @@ function codestruct($argv)
     $result = [];
     $code = rtrim($code);
 
-while ($code) {
+    while ($code) {
         $code = ltrim($code);
         $valid = false;
         foreach ($rules as $rule) {
             $pattern = "/^" . $rule[0] . "/";
             $type = $rule[1];
-
             if (preg_match($pattern, $code, $capture)) {
                 $result[] = [
                     'type' => $type,
@@ -49,7 +48,6 @@ while ($code) {
             }
         }
         if (!$valid) {
-            var_dump($result);
             exit('Unable to find a rule: ' . $code . '\n');
         }
     }
