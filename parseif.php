@@ -24,11 +24,9 @@ class parseif
 
     public function parseStatement()
     {
-        var_dump($this->lexer->parser[0]['type']);
         if ($this->lexer->peek()['type'] == 'PRINT') {
             $this->lexer->shift();
             $this->lexer->expect('DOUBLE_QUOTE');
-            var_dump($this->lexer->parser);
             $temp = $this->lexer->peek()["type"];
             if ($temp == 'STRING')
                 $value = $this->lexer->expect('STRING');
@@ -40,10 +38,12 @@ class parseif
         }
         else if ($this->lexer->peek()['type'] == "INTEGER") {
             $this->lexer->shift();
-            $this->lexer->expect('SEMICOLON');
             return array('type' => 'integer');
         }
-        else if ($this->lexer->peek()['type'] == "EQ") {
+        else if ($this->lexer->peek()['type'] == "SEMICOLON") {
+            $this->lexer->shift();
+        }
+        else if ($this->lexer->peek()['type'] == "OPERAND") {
             $this->lexer->shift();
             return array('type' => 'equal');
         }
@@ -61,7 +61,6 @@ class parseif
         $this->lexer->expect('LEFT_BRACE');
         $statements = [];
         while ($statement = $this->parseStatement()) {
-            var_dump("vedsgsg");
             $statements[] = $statement;
         }
         $this->lexer->expect('RIGHT_BRACE');
@@ -72,7 +71,7 @@ class parseif
         if ($this->lexer->peek()['type'] == "ELSE") {
             $this->lexer->shift();
             $block = $this->parseBlock();
-            return array('type' => 'else', 'block' => $block);
+            return $block;
         }
     }
 

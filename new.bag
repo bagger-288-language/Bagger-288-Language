@@ -1,8 +1,8 @@
-if (1 >= 1)
+if (2 < 1)
 {
     print "gwegre";
 }
 else
 {
-    a = 22;
+    print "wesh frere";
 }
