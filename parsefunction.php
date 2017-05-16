@@ -1,25 +1,23 @@
 <?php
 
+require ("functions.php");
 
 class parsefunction
 {
     public $lexer;
     private $parse;
+    private $function;
 
     public function __construct($lexer)
     {
         $this->parse = new statements($lexer);
+        $this->function = new functions();
         $this->lexer = $lexer;
     }
 
     public function parseName()
     {
-        $this->lexer->expect("FUNCTION");
-        $name = [];
-        while (($temp = $this->lexer->peek()["type"]) != 'LEFT_PAREN') {
-            $argument[] = $this->lexer->expect($temp);
-        }
-        return array('type' => 'name', 'name' => $name);
+        return array('type' => 'name', 'name' => $this->lexer->expect('STRING'));
     }
 
     public function parseArgument()
@@ -28,6 +26,8 @@ class parsefunction
         $argument = [];
         while (($temp = $this->lexer->peek()["type"]) != 'RIGHT_PAREN') {
             $argument[] = $this->lexer->expect($temp);
+            if ($this->lexer->peek()["type"] != 'RIGHT_PAREN')
+                $this->lexer->expect('COLON');
         }
         $this->lexer->expect('RIGHT_PAREN');
         return array('type' => 'argument', 'argument' => $argument);
@@ -36,7 +36,7 @@ class parsefunction
     public function parseStatement()
     {
         $i = 0;
-        while ($i < 6) {
+        while ($i < 7) {
             if ($this->lexer->peek()['type'] == $this->parse->index[$i]) {
                 return call_user_func($this->parse->parseFunctions[$this->parse->index[$i]]);
             }
@@ -60,7 +60,8 @@ class parsefunction
             $this->lexer->shift();
             $name = $this->parseName();
             $arg = $this->parseArgument();
-            $stat = $this->parseStatement();
+            $stat = $this->parseBlock();
+            $this->function->setFunc($name["name"]["value"], array($arg, $stat));
             return array('type' => 'function', 'name' => $name, 'argument' => $arg, 'statement' => $stat);
         }
         else return NULL;

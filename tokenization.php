@@ -11,6 +11,7 @@ function codestruct($argv)
         [ '\}',              'RIGHT_BRACE'       ],
         [ '\d+',             'INTEGER'           ],
         [ '\;',              'SEMICOLON'         ],
+        [ '\,',              'COLON'             ],
         [ '\"',              'DOUBLE_QUOTE'      ],
         [ '\=',              'EQUAL'             ],
         [ 'else',            'ELSE'              ],

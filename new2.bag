@@ -1,0 +1,3 @@
+function oui($a) {
+    print "oui";
+}

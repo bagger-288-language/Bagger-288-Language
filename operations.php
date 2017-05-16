@@ -45,16 +45,16 @@ function    testoperation($inta, $operand, $intb)
 {
     $i = 0;
     $tableope = [
-        [ 'oper' => '>', 'func' => 'supp' ],
-        [ 'oper' => '<', 'func' => 'inf' ],
+        [ 'oper' => '>', 'func' => 'supp'   ],
+        [ 'oper' => '<', 'func' => 'inf'    ],
         [ 'oper' => '<=', 'func' => 'infeq' ],
         [ 'oper' => '>=', 'func' => 'supeq' ],
         [ 'oper' => '=', 'func' => 'simpeq' ],
         [ 'oper' => '==', 'func' => 'dobeq' ],
-        [ 'oper' => '+',  'func' => 'sum' ],
-        [ 'oper' => '-', 'func' => 'diff' ],
-        [ 'oper' => '*', 'func' => 'mult' ],
-        [ 'oper' => '/', 'func' => 'div' ]
+        [ 'oper' => '+',  'func' => 'sum'   ],
+        [ 'oper' => '-', 'func' => 'diff'   ],
+        [ 'oper' => '*', 'func' => 'mult'   ],
+        [ 'oper' => '/', 'func' => 'div'    ]
     ];
 
     while ($i < 10)

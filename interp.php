@@ -9,13 +9,11 @@ if ($argc == 2) {
     $parseif = new parseif($lexer);
     $parsefunc = new parsefunction($lexer);
     $tree = array();
-    //    $parsefunction = new parsefunction($argv);
-    //$result = $parseif->lexer->parser;
-//    $result1 = $parsefunction->parse_function();
+
     while ($lexer->parser) {
-        if (array_push($tree, $parseif->parse_if())) ;
-        elseif (array_push($tree, $parsefunc->parse_function())) ;
-    }
+        if (!array_push($tree, $parseif->parse_if()) || $parseif->parse_if() == NULL)
+            array_push($tree, $parsefunc->parse_function());
+   }
 }
 else {
     echo "Veuillez ajouter un nom de fichier";
@@ -27,6 +25,10 @@ function	interif($tree){
 	    run($tree['then']);
     } else if (isset($tree['else'])) run($tree['else']);
     return $condition;
+}
+
+function    interfunctions($tree) {
+    return 0;
 }
 
 function	interblock($tree) {
@@ -91,6 +93,7 @@ function run($tree) {
 
   $tableaufunc = [
       [ 'node' => 'if',         'functions' => 'interif'        ],
+      [ 'node' => 'function',   'functions' => 'interfunctions' ],
       [ 'node' => 'block',      'functions' => 'interblock'     ],
       [ 'node' => 'PRINT',      'functions' => 'interprint'     ],
       [ 'node' => 'INTEGER',    'functions' => 'interint'       ],
@@ -101,7 +104,7 @@ function run($tree) {
       [ 'node' => 'EQUAL',      'functions' => 'intereq'        ],
       [ 'node' => 'SEMICOLON',  'functions' => 'intersemco'     ]
   ];
-  while ( $i < 10 ) {
+  while ( $i < 11 ) {
     if ($tree['type'] == $tableaufunc[$i]['node']) {
 	$value = $tableaufunc[$i]['functions']($tree);
 	$j = 1;
