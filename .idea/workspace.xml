@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbcba943-734d-4564-8978-101dafc26f1e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interp.php" afterPath="$PROJECT_DIR$/interp.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new.bag" afterPath="$PROJECT_DIR$/new.bag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/statements.php" afterPath="$PROJECT_DIR$/statements.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokenization.php" afterPath="$PROJECT_DIR$/tokenization.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +26,8 @@
       <file leaf-file-name="tokenization.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tokenization.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+            <state relative-caret-position="905">
+              <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -34,18 +36,18 @@
       <file leaf-file-name="new.bag" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/new.bag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+            <state relative-caret-position="234">
+              <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interp.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="interp.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,17 +66,17 @@
       <file leaf-file-name="parseif.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parseif.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="31" column="93" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="93" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="statements.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="statements.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/statements.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="162">
               <caret line="60" column="25" lean-forward="true" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
               <folding />
             </state>
@@ -94,7 +96,7 @@
       <file leaf-file-name="parsefunction.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parsefunction.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-448">
+            <state relative-caret-position="198">
               <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding />
             </state>
@@ -105,8 +107,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <first_editor relative-caret-position="18">
+                <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -151,12 +153,13 @@
         <option value="$PROJECT_DIR$/parsefunction.php" />
         <option value="$PROJECT_DIR$/parseif.php" />
         <option value="$PROJECT_DIR$/lexer2.php" />
-        <option value="$PROJECT_DIR$/tokenization.php" />
         <option value="$PROJECT_DIR$/variable.php" />
         <option value="$PROJECT_DIR$/operations.php" />
-        <option value="$PROJECT_DIR$/interp.php" />
-        <option value="$PROJECT_DIR$/new.bag" />
         <option value="$PROJECT_DIR$/statements.php" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/new.bag" />
+        <option value="$PROJECT_DIR$/tokenization.php" />
+        <option value="$PROJECT_DIR$/interp.php" />
       </list>
     </option>
   </component>
@@ -168,8 +171,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="254" />
-    <option name="y" value="64" />
+    <option name="x" value="203" />
+    <option name="y" value="73" />
     <option name="width" value="1560" />
     <option name="height" value="854" />
   </component>
@@ -300,15 +303,15 @@
       <workItem from="1494433861113" duration="60000" />
       <workItem from="1494832113505" duration="8850000" />
       <workItem from="1494841699317" duration="4439000" />
-      <workItem from="1494850293301" duration="19548000" />
+      <workItem from="1494850293301" duration="23039000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72148000" />
+    <option name="totallyTimeSpent" value="75639000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="254" y="64" width="1560" height="854" extended-state="0" />
+    <frame x="203" y="73" width="1560" height="854" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24903722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -620,29 +623,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexer.php" />
     <entry file="file://$PROJECT_DIR$/interp.php.save" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tokenization.php">
+    <entry file="file://$PROJECT_DIR$/parsefunction.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        <state relative-caret-position="198">
+          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parsefunction.php">
+    <entry file="file://$PROJECT_DIR$/new.bag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-448">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        <state relative-caret-position="234">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -655,10 +647,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parseif.php">
+    <entry file="file://$PROJECT_DIR$/operations.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="31" column="93" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="93" />
+        <state relative-caret-position="18">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -671,34 +663,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interp.php">
+    <entry file="file://$PROJECT_DIR$/tokenization.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/operations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new.bag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        <state relative-caret-position="905">
+          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/statements.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="162">
           <caret line="60" column="25" lean-forward="true" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="18">
+            <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parseif.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>

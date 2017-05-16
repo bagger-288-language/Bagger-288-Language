@@ -3,34 +3,31 @@
 function codestruct($argv)
 {
     $rules = [
-        ['function',        'FUNCTION'],
-        ['if',              'IF'],
-        ['\(',              'LEFT_PAREN'],
-        ['\)',              'RIGHT_PAREN'],
-        ['\{',              'LEFT_BRACE'],
-        ['\}',              'RIGHT_BRACE'],
-        ['\d+',             'INTEGER'],
-        ['\;',              'SEMICOLON'],
-        ['\"',              'DOUBLE_QUOTE'],
-        ['\=',              'EQUAL'],
-        ['else',            'ELSE'],
-        ['\$[\w\d]+',       'VARIABLE'],
-        ['print',           'PRINT'],
-        ['>=|<=|==|[<>]',   'OPERAND'],
-        ['\n',              'CHARIOT_RETURN'],
-        ['[\w\s]+',     'STRING'],
-        ['\+',              'OPERAND'],
-        ['\-',              'OPERAND'],
-        ['\*',              'OPERAND'],
-        ['\/',              'OPERAND'],
-
+        [ 'function',        'FUNCTION'          ],
+        [ 'if',              'IF'                ],
+        [ '\(',              'LEFT_PAREN'        ],
+        [ '\)',              'RIGHT_PAREN'       ],
+        [ '\{',              'LEFT_BRACE'        ],
+        [ '\}',              'RIGHT_BRACE'       ],
+        [ '\d+',             'INTEGER'           ],
+        [ '\;',              'SEMICOLON'         ],
+        [ '\"',              'DOUBLE_QUOTE'      ],
+        [ '\=',              'EQUAL'             ],
+        [ 'else',            'ELSE'              ],
+        [ '\$[\w\d]+',       'VARIABLE'          ],
+        [ 'print',           'PRINT'             ],
+        [ '>=|<=|==|[<>]',   'OPERAND'           ],
+        [ '\n',              'CHARIOT_RETURN'    ],
+        [ '[\w\s]+',         'STRING'            ],
+        [ '\+',              'OPERAND'           ],
+        [ '\-',              'OPERAND'           ],
+        [ '\*',              'OPERAND'           ],
+        [ '\/',              'OPERAND'           ]
     ];
-
     $open = fopen($argv[1], "r");
     $code = fread($open, filesize($argv[1]));
     $result = [];
     $code = rtrim($code);
-
     while ($code) {
         $code = ltrim($code);
         $valid = false;

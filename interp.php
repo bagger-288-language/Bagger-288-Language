@@ -1,4 +1,5 @@
 <?php
+
 require ("parseif.php");
 require ("parsefunction.php");
 require ("lexer2.php");
@@ -87,16 +88,16 @@ function run($tree) {
   $j = 0;
 
   $tableaufunc = [
-      [ 'node' => 'if',    'functions' => 'interif' ],
-      [ 'node' => 'block', 'functions' => 'interblock' ],
-      [ 'node' => 'PRINT', 'functions' => 'interprint' ],
-      [ 'node' => 'INTEGER', 'functions' => 'interint' ],
-      [ 'node' => 'STRING', 'functions' => 'interstr' ],
-      [ 'node' => 'condition', 'functions' => 'intercondition' ],
-      [ 'node' => 'VARIABLE', 'functions' => 'intervar' ],
-      [ 'node' => 'OPERAND', 'functions' => 'interoper' ],
-      [ 'node' => 'EQUAL', 'functions' => 'intereq' ],
-      [ 'node' => 'SEMICOLON', 'functions' => 'intersemco' ]
+      [ 'node' => 'if',         'functions' => 'interif'        ],
+      [ 'node' => 'block',      'functions' => 'interblock'     ],
+      [ 'node' => 'PRINT',      'functions' => 'interprint'     ],
+      [ 'node' => 'INTEGER',    'functions' => 'interint'       ],
+      [ 'node' => 'STRING',     'functions' => 'interstr'       ],
+      [ 'node' => 'condition',  'functions' => 'intercondition' ],
+      [ 'node' => 'VARIABLE',   'functions' => 'intervar'       ],
+      [ 'node' => 'OPERAND',    'functions' => 'interoper'      ],
+      [ 'node' => 'EQUAL',      'functions' => 'intereq'        ],
+      [ 'node' => 'SEMICOLON',  'functions' => 'intersemco'     ]
   ];
   while ( $i < 10 ) {
     if ($tree['type'] == $tableaufunc[$i]['node']) {

@@ -8,3 +8,7 @@ else
 {
     print "CEST LA";
 }
+if (2)
+{
+    print "few";
+}
