@@ -1,0 +1,13 @@
+if (2 > 1)
+{
+    $a = 23;
+    $b = 1;
+    $c = $a;
+    print $a;
+    print $b;
+    print $c;
+}
+else
+{
+    print "CEST LA";
+}
