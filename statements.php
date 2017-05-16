@@ -58,25 +58,25 @@ class statements
                 $this->lexer->shift();
                 if ($this->lexer->peek()["type"] == 'EQUAL') {
                     $this->lexer->shift();
-                    if (!$this->vars->getValue($this->temp)) {
-                        if ($this->lexer->peek()["type"] == 'VARIABLE')
-//                               $this->value = $this->vars->getValue($this->lexer->peek()["value"])
-                            $this->value = $this->vars->getValue($this->lexer->peek()["value"]);
-                        else  $this->value = $this->lexer->peek()["value"];
-                        $this->vars->addVariable($this->temp, $this->value);
-                        $this->lexer->shift();
-                        if ($this->lexer->peek()["type"] == 'OPERAND') {
-                            $this->operand = $this->lexer->peek()["value"];
-                            $this->lexer->shift();
-                            if ($this->lexer->peek()["type"] == 'VARIABLE')
-                                $this->vars->updateValue($this->temp, testoperation($this->value, $this->operand,
-                                    $this->vars->getValue($this->lexer->peek()["value"])));
-                            else $this->vars->updateValue($this->temp, testoperation($this->value, $this->operand,
-                                $this->lexer->peek()["value"]));
-                            return array('type' => 'VARIABLE', 'value' => $this->temp);
+                    $this->value = NULL;
+                    while ($this->lexer->peek()["type"] != "SEMICOLON") {
+                        if (!$this->value)
+                            if(!$this->vars->getValue($this->temp))
+                                $this->value = $this->lexer->shift()["value"];
+                            else $this->value = $this->vars->getValue($this->lexer->shift()["value"]);
+                        else {
+                            $this->operand = $this->lexer->expect('OPERAND')["value"];
+                            if ($this->lexer->peek()["type"] == 'VARIABLE') {
+                                $this->value = testoperation($this->value, $this->operand,
+                                    $this->vars->getValue($this->lexer->shift()["value"]));
+                            }
+                            else $this->value = testoperation($this->value, $this->operand,
+                                $this->lexer->shift()["value"]);
                         }
-                        else return array('type' => 'VARIABLE', 'value' => $this->temp);
-                    } else return array('type' => 'VARIABLE', 'value' => $this->temp);
+                    }
+                    $this->vars->updateValue($this->temp, $this->value);
+                    $this->lexer->expect('SEMICOLON');
+                    return array('type' => 'VARIABLE', 'value' => $this->temp);
                 }
                 else return array('type' => 'VARIABLE', 'value' => $this->temp);
             },
