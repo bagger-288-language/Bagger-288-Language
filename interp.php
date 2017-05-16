@@ -1,6 +1,5 @@
 <?php
 require ("parseif.php");
-require ("operations.php");
 require ("parsefunction.php");
 require ("lexer2.php");
 
@@ -99,7 +98,6 @@ function run($tree) {
       [ 'node' => 'EQUAL', 'functions' => 'intereq' ],
       [ 'node' => 'SEMICOLON', 'functions' => 'intersemco' ]
   ];
-  var_dump($tree);
   while ( $i < 10 ) {
     if ($tree['type'] == $tableaufunc[$i]['node']) {
 	$value = $tableaufunc[$i]['functions']($tree);

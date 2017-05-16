@@ -1,6 +1,7 @@
 <?php
 
 require ("variable.php");
+require ("operations.php");
 
 class statements
 {
@@ -9,6 +10,8 @@ class statements
     public $index;
     private $vars;
     private $temp;
+    private $value;
+    private $operand;
 
     /**
      * @param mixed $parseFunctions
@@ -53,13 +56,29 @@ class statements
             'VARIABLE' => function () {
                 $this->temp = $this->lexer->peek()["value"];
                 $this->lexer->shift();
-                $this->lexer->expect('EQUAL');
-//                $value = $this->lexer->peek()["type"];
-                if (!$this->vars->getValue($this->temp)) {
-                    $this->vars->addVariable($this->temp, $this->lexer->peek()["value"]);
+                if ($this->lexer->peek()["type"] == 'EQUAL') {
                     $this->lexer->shift();
-                    return array('type' => 'VARIABLE', 'value' => $this->temp);
+                    if (!$this->vars->getValue($this->temp)) {
+                        if ($this->lexer->peek()["type"] == 'VARIABLE')
+//                               $this->value = $this->vars->getValue($this->lexer->peek()["value"])
+                            $this->value = $this->vars->getValue($this->lexer->peek()["value"]);
+                        else  $this->value = $this->lexer->peek()["value"];
+                        $this->vars->addVariable($this->temp, $this->value);
+                        $this->lexer->shift();
+                        if ($this->lexer->peek()["type"] == 'OPERAND') {
+                            $this->operand = $this->lexer->peek()["value"];
+                            $this->lexer->shift();
+                            if ($this->lexer->peek()["type"] == 'VARIABLE')
+                                $this->vars->updateValue($this->temp, testoperation($this->value, $this->operand,
+                                    $this->vars->getValue($this->lexer->peek()["value"])));
+                            else $this->vars->updateValue($this->temp, testoperation($this->value, $this->operand,
+                                $this->lexer->peek()["value"]));
+                            return array('type' => 'VARIABLE', 'value' => $this->temp);
+                        }
+                        else return array('type' => 'VARIABLE', 'value' => $this->temp);
+                    } else return array('type' => 'VARIABLE', 'value' => $this->temp);
                 }
+                else return array('type' => 'VARIABLE', 'value' => $this->temp);
             },
             'SEMICOLON' => function () {
                 return $this->lexer->shift();

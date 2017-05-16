@@ -1,7 +1,9 @@
 if (2 > 1)
 {
     $a = 23;
-    print $a;
+    $c = $a + 45;
+    $b = $a + $c;
+    print $b;
 }
 else
 {
