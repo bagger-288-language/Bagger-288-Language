@@ -8,13 +8,13 @@ if ($argc == 2) {
     $lexer = new lexer2($argv);
     $parseif = new parseif($lexer);
     $parsefunc = new parsefunction($lexer);
+    $tree = array();
     //    $parsefunction = new parsefunction($argv);
     //$result = $parseif->lexer->parser;
 //    $result1 = $parsefunction->parse_function();
-    if ($tree = $parseif->parse_if());
-    elseif ($tree = $parsefunc->parse_function());
-    if (!$tree) {
-        exit('Parse error \n');
+    while ($lexer->parser) {
+        if (array_push($tree, $parseif->parse_if())) ;
+        elseif (array_push($tree, $parsefunc->parse_function())) ;
     }
 }
 else {
@@ -25,9 +25,7 @@ function	interif($tree){
     $condition = run($tree['condition']);
     if ($condition != 0) {
 	    run($tree['then']);
-    }
-    else
-        run($tree['else']);
+    } else if (isset($tree['else'])) run($tree['else']);
     return $condition;
 }
 
@@ -54,12 +52,16 @@ function	interstr($tree) {
 }
 
 function    intercondition($tree) {
-    $inta = intval($tree['condition'][0]['value']);
-    $operand = $tree['condition'][1]['value'];
-    $intb = intval($tree['condition'][2]['value']);
-    $test = testoperation($inta, $operand, $intb);
-    if ($test == true || is_int($test))
-        return 1;
+    if (isset($tree['condition'][1])) {
+        $inta = intval($tree['condition'][0]['value']);
+        $operand = $tree['condition'][1]['value'];
+        $intb = intval($tree['condition'][2]['value']);
+        $test = testoperation($inta, $operand, $intb);
+        if ($test == true || is_int($test))
+            return 1;
+    } else {
+        if ($tree['condition'][0]['value'] != 0) return 1;
+    }
     return 0;
 }
 
@@ -112,7 +114,8 @@ function run($tree) {
   }
 }
 
-run($tree);
-
-?>
-
+$k = 0;
+while (isset($tree[$k])) {
+    run($tree[$k]);
+    $k++;
+}

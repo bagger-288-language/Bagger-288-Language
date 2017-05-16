@@ -77,8 +77,7 @@ class statements
                     $this->vars->updateValue($this->temp, $this->value);
                     $this->lexer->expect('SEMICOLON');
                     return array('type' => 'VARIABLE', 'value' => $this->temp);
-                }
-                else return array('type' => 'VARIABLE', 'value' => $this->temp);
+                } else return array('type' => 'VARIABLE', 'value' => $this->temp);
             },
             'SEMICOLON' => function () {
                 return $this->lexer->shift();

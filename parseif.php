@@ -17,9 +17,8 @@ class parseif
     {
         $this->lexer->expect("LEFT_PAREN");
         $conditions = [];
-        while (($temp = $this->lexer->peek()["type"]) != 'RIGHT_PAREN') {
+        while (($temp = $this->lexer->peek()["type"]) != 'RIGHT_PAREN')
             $conditions[] = $this->lexer->expect($temp);
-        }
         $this->lexer->expect('RIGHT_PAREN');
         return array('type' => 'condition', 'condition' => $conditions);
     }
